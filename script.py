@@ -55,11 +55,11 @@ def main() -> None:
         return
 
     print(f"[debug] Selected file: {file_path}")
+    if "DPI_out" not in os.path.basename(file_path):
+        sys.exit("[error] 文件名中未找到 'DPI_out' 标记，终止处理。")
+
     with open(file_path, "r", encoding="utf-8") as fh:
         content = fh.read()
-
-    if "DPI_out" not in content:
-        sys.exit("[error] 输入文件中未找到 'DPI_out' 标记，终止处理。")
 
     data_in = content.split()
     if not data_in:
