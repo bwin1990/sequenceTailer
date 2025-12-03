@@ -78,12 +78,13 @@ def main() -> None:
 
     machine_no = input("请输入合成仪编号: ")
     name = f"{split_prefix_before_syn(file_path)}680k_{max_len + 5}mer_pickout{machine_no}.txt"
-    print(f"[debug] Output file name: {name}")
+    output_path = os.path.join(os.path.dirname(file_path) or ".", name)
+    print(f"[debug] Output file: {output_path}")
 
-    with open(name, "w", encoding="utf-8") as fh:
+    with open(output_path, "w", encoding="utf-8") as fh:
         fh.write("\n".join(out))
 
-    print(f"[debug] Wrote {len(out)} sequences to {name}")
+    print(f"[debug] Wrote {len(out)} sequences to {output_path}")
 
 
 if __name__ == "__main__":
